@@ -18,6 +18,9 @@ def maps():
 @app.route('/', methods=['POST'])
 def maps_post():
     text = request.form['station']
+    appropriate_stations = [i["name"] for i in stations]
+    if text not in appropriate_stations:
+        return render_template("mapbasics.html", data=stations), 400
     processed = test_task.solve_text_case(text, slver)
     total_time = sum(processed[1])
     processed[1].append(None)
