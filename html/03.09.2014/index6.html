@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Красивые выпадающие списки для сайта | Демо 6</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-skin-rotate.css" />
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="color-6">
+		<div class="container">
+			<header class="codrops-header">
+				<h1><span>Подборка </span> Красивых Выпадающих Списков</h1>	
+				<nav class="codrops-demos">
+					<a href="index.html">Граница</a>
+					<a href="index2.html">Подчеркивание</a>
+					<a href="index3.html">Эластичность</a>
+					<a href="index4.html">Слайды</a>
+					<a href="index5.html">Перекрытие</a>
+					<a class="current-demo" href="index6.html">Вращение</a>
+					<a href="index7.html">Селект</a>
+					<a href="index8.html">Круг</a>
+				</nav>
+			</header>
+			<section>
+				<label class="select-label">Выберите своего динозавра:</label>
+				<select class="cs-select cs-skin-rotate">
+					<option value="1">Стегозавр</option>
+					<option value="2">Велоцираптор</option>
+					<option value="3">Спинозавр</option>
+					<option value="4">Археоптерикс</option>
+					<option value="5">Апатозавр</option>
+				</select>
+			</section>
+		</div>
+		<script src="js/classie.js"></script>
+		<script src="js/selectFx.js"></script>
+		<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+		</script>
+	</body>
+</html>

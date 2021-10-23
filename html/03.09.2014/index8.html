@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Красивые выпадающие списки для сайта | Демо 7</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-skin-circular.css" />
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body class="color-8">
+		<div class="container">
+			<header class="codrops-header">
+				<h1><span>Подборка </span> Красивых Выпадающих Списков</h1>	
+				<nav class="codrops-demos">
+					<a href="index.html">Граница</a>
+					<a href="index2.html">Подчеркивание</a>
+					<a href="index3.html">Эластичность</a>
+					<a href="index4.html">Слайды</a>
+					<a href="index5.html">Перекрытие</a>
+					<a href="index6.html">Вращение</a>
+					<a href="index7.html">Селект</a>
+					<a class="current-demo" href="index8.html">Круг</a>
+				</nav>
+			</header>
+			<section>
+				<select class="cs-select cs-skin-circular">
+					<option value="" disabled selected>Выберите элемент</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+				</select>
+			</section>
+		</div>
+		<script src="js/classie.js"></script>
+		<script src="js/selectFx.js"></script>
+		<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el, {
+						stickyPlaceholder: false,
+						onChange: function(val){
+							var img = document.createElement('img');
+							img.src = 'img/'+val+'.png';
+							img.onload = function() {
+								document.querySelector('span.cs-placeholder').style.backgroundImage = 'url(img/'+val+'.png)';
+							};
+						}
+					});
+				} );
+			})();
+		</script>
+	</body>
+</html>
