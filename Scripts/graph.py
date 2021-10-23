@@ -15,4 +15,19 @@ class Graph:
     def add_edges(self, edges):
         self.edges = edges
 
+    def shrink(self, vertexes):
+        print(vertexes)
+        dist = [self.edges[i].copy() for i in range(self.size)]
+        for i in range(self.size):
+            for u in range(self.size):
+                for v in range(self.size):
+                    dist[u][v] = min(dist[u][v], dist[u][i] + dist[i][v])
+        for i in range(self.size):
+            dist[i][i] = self.INF
+        print(dist)
 
+        new_graph = Graph(len(vertexes))
+        for i in range(len(vertexes)):
+            for j in range(len(vertexes)):
+                new_graph.add_edge(i, j, dist[vertexes[i]][vertexes[j]])
+        return new_graph
