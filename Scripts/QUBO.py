@@ -6,16 +6,13 @@ class QUBOMatrixFromGraph:
     path_length = 0
     vertexes = 0
     size = 0
-    Lagrange = 10000
+    Lagrange = 1000
     graph = None
     graph_size = 0
     doubles = []
     finish = 0
 
     def __init__(self, graph_size, graph, start=0, finish=0, path_length=-1, points=[]):
-        if path_length == -1:  # если не предсказали длинну пути - пусть будет как для гамильтонова цикла
-            path_length = graph_size + 1
-
         self.doubles.append(finish)  # заводим фиктивную вершину финиша, после попадения в которую отдыхаем
         self.finish = graph_size
 
@@ -23,6 +20,8 @@ class QUBOMatrixFromGraph:
 
         self.row_size = graph_size + len(self.doubles)
 
+        if path_length == -1:  # если не предсказали длинну пути - пусть будет как для гамильтонова цикла
+            path_length = self.row_size + 1
         self.path_length = path_length
         self.size = (path_length) * self.row_size
         self.matrix = [[0] * self.size for i in range(self.size)]
@@ -63,6 +62,7 @@ class QUBOMatrixFromGraph:
         f = from_v
         t = to_v
         if t == self.finish and f == self.finish:
+            self.matrix[time * self.row_size + f][(time + 1) * self.row_size + t] += 0
             return
         while from_v >= self.graph_size:  # если вершины - дубли а не из графа, достанем значения оригинала
             from_v = self.doubles[from_v - self.graph_size]
@@ -71,7 +71,7 @@ class QUBOMatrixFromGraph:
         edge = self.graph.edges[from_v][to_v]
         if f != t and from_v == to_v:
             return
-        self.matrix[time * self.row_size + f][(time + 1) * self.row_size + t] += edge
+        self.matrix[time * self.row_size + f][(time + 1) * self.row_size + t] += 10
 
     def fix_in_time(self, index, time):  # Фиксирует вершину Index на шаге time
         for i in range(self.row_size):
@@ -96,7 +96,7 @@ class QUBOMatrixFromGraph:
                 i = j
         if c != 1:
             print(opt)
-            return
+            return opt
         if i < self.graph_size:
             print(i)
         if i == self.graph_size:

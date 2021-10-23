@@ -1,9 +1,5 @@
-from qboard import Solver
-import numpy as np
-from graph import *
-from QUBO import *
-import json
 import test_task
+import custom_task
 
-test_task.solve_text_case()
+test_task.solve_text_case("Третьяковская")
 
