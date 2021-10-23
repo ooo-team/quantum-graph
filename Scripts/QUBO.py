@@ -195,11 +195,8 @@ class QUBOMatrixFromGraphComm:
                 c += 1
                 i = j
         if c != 1:
-            print(opt)
-            return
+            return opt
         if i < self.graph_size:
-            print(i)
+            return i
         if i == self.graph_size:
-            print("f")
-        if i > self.graph_size:
-            print(str(self.doubles[i - self.graph_size]) + "'")
+            return "f"
