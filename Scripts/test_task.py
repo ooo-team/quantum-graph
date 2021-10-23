@@ -38,9 +38,11 @@ def solve_text_case(start):
 
     np.save("spins.npy", spins)
 
+    out = list()
     for i in range(QUBO_obj.get_path_size()):
         stant = QUBO_obj.print_option(spins[i*QUBO_obj.get_row_size():(i+1)*QUBO_obj.get_row_size()])
         if stant != 'f':
-            print(data['stations'][stant]['name'])
+            out.append(data['stations'][stant]['name'])
         else:
-            print(start)
+            out.append(start)
+    return out
