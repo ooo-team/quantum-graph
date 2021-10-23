@@ -46,10 +46,16 @@
                     <option value="{{ o.name }}">{{ o.name }}</option>
                     {% endfor %}
                 </datalist>
-                <button type="submit">Добавить</button>
+                <button type="submit" name="btn" value="submit_stations">Посчитать</button>
             </form>
             <div style="height:30px; width:100%; clear:both;"></div>
         </div>
+        <!-- <div style="text-align:center">
+            <form method="POST" value="add">
+                <button type="submit" name="btn" value="add_station">Добавить</button>
+            </form>
+            <div style="height:30px; width:100%; clear:both;"></div>
+        </div> -->
     </div>
     <ol style="color:#dcd38e; display: table; margin: 0 auto;">
         {% for el, tm in processed_text_time %}
