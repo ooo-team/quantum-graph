@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/demo.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cs-select.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cs-skin-slide.css') }}" />
+    <link rel="stylesheet" href="input_dropdown.css"/>
     <!--[if IE]>
 {#  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>#}
 		<![endif]-->
@@ -33,12 +34,11 @@
             </form>
 
         </section>
-        <ol>
+        <ul style="display: table; align-content: center;">
             {% for elem in processed_text %}
-                <li>{{ elem }} </li>
+            <li>{{ elem }} </li>
             {% endfor %}
-        </ol>
-
+        </ul>
     </div>
 </body>
 
