@@ -15,10 +15,8 @@ function init () {
     myMap.events.add('click', function (e) {
         var coords = e.get('coords');
         if (myMap.balloon.isOpen()) {
-            var baloon = myMap.balloon;
-            console.log(myMap.balloon);
             document.getElementById('chosen_station').value = myMap.balloon.getData().properties._data.name;
-            // console.log(myMap.balloon.getData());
+            console.log(myMap.balloon.getData());
         }
     });
     
