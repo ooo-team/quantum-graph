@@ -1,4 +1,4 @@
-from graph import *
+from pyscr_graph import *
 
 
 class QUBOMatrixFromGraphComm:  # QUBO генератор для графа (гамильтонов путь или цикл)
@@ -100,3 +100,24 @@ class QUBOMatrixFromGraphComm:  # QUBO генератор для графа (г�
             return i
         if i == self.graph_size:
             return "f"
+
+    def format_x_to_ret(self, spins, data, names, start, graph):
+        # формируем вывод, нужны названия станций подряд и время между ними
+
+        out = []  # названия
+        vertexes = []  # индексы (для расчёта времени через граф)
+        times = []  # интервалы времени
+
+        for i in range(self.get_path_size()):  # для отработки по-батчам надо пользоваться тем какой размер Q
+            # трансляция батча в индекс через метод QUBO объекта, чтобы формат учесть, довольно кринжово, oh well
+            batch = self.print_option(spins[i * self.get_row_size():(i + 1) * self.get_row_size()])
+            if batch != 'f':  # Кидаем имя станции и индекс в листы
+                vertexes.append(batch)
+                out.append(data['stations'][batch]['name'])
+            else:
+                vertexes.append(names[start])
+                out.append(start)
+
+        for i in range(len(vertexes) - 1):  # Проходимся по рёбрам, пишем интервалы в листы
+            times.append(graph.edges[vertexes[i]][vertexes[i + 1]])
+        return out, times
