@@ -13,7 +13,9 @@ def create_solver_connection():
     return s
 
 
-def solve_text_case(start, s):
+def solve_text_case(start, s, end=-1):
+    if end == -1:
+        end = start
     with open("../test_stations.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
 
@@ -27,12 +29,13 @@ def solve_text_case(start, s):
         for item in data['stations'][i]['able_to_get_to']:
             G.add_edge(names[data['stations'][i]['name']], names[item['to']], item['time'])
 
-    #for i in range(n):
-    #    print(G.edges[i])
-
     np.save("adjacency.npy", Graph.edges)
 
-    QUBO_obj = QUBOMatrixFromGraphComm(n, G, start=names[start])
+    print(G.edges)
+
+    G.shrink([])
+
+    QUBO_obj = QUBOMatrixFromGraphComm(n, G, start=names[start], end=names[end])
     Q = QUBO_obj.get_matrix()
     file.close()
     np.save("Q.npy", Q)

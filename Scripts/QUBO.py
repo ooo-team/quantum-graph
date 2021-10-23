@@ -12,14 +12,22 @@ class QUBOMatrixFromGraphComm:
     doubles = []
     finish = 0
 
-    def __init__(self, graph_size, graph, start=0):
+    def __init__(self, graph_size, graph, start=0, end=-1):
+        if end == -1:
+            end = start
         self.doubles = []
-        self.doubles.append(start)  # заводим фиктивную вершину финиша, после попадения в которую отдыхаем
-        self.finish = graph_size
+        if start == end:
+            self.doubles.append(start)  # заводим фиктивную вершину финиша, после попадения в которую отдыхаем
+            self.finish = graph_size
+        else:
+            self.finish = end
 
         self.row_size = graph_size + len(self.doubles)
 
-        self.path_length = graph_size + 1
+        if start==end:
+            self.path_length = graph_size + 1
+        else:
+            self.path_length = graph_size
         self.size = self.path_length * self.row_size
         self.matrix = [[0] * self.size for i in range(self.size)]
         self.graph = graph
