@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/demo.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cs-select.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cs-skin-slide.css') }}" />
-    <link rel="stylesheet" href="input_dropdown.css"/>
     <!--[if IE]>
 {#  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>#}
 		<![endif]-->
@@ -19,7 +18,7 @@
 <body class="color-4">
     <div class="container">
         <header class="codrops-header">
-            <h1>Красивый выпадающий список</h1>
+            <h1>Расчет времени поездки на квантовом компьютере</h1>
         </header>
         <section>
             <label class="select-label">Станция</label>
@@ -34,12 +33,17 @@
             </form>
 
         </section>
-        <ul style="display: table; align-content: center;">
-            {% for elem in processed_text %}
-            <li>{{ elem }} </li>
-            {% endfor %}
-        </ul>
     </div>
+    <ol style="display: table; margin: 0 auto;">
+        {% for el, tm in processed_text_time %}
+        <li>{{ el }}<br>
+            {% if tm %}
+            {{ tm }} мин.
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+    <h3 style="text-align: center;">Суммарное время поездки: {{total_time}}</h3>
 </body>
 
 </html>
