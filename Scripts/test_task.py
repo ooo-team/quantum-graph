@@ -15,7 +15,8 @@ def solve_text_case(start):
     with open("../test_stations.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
 
-    names = dict(zip([data['stations'][i]['name'] for i in range (len(data['stations']))], [i for i in range (len(data['stations']))]))
+    names = dict(zip([data['stations'][i]['name'] for i in range(len(data['stations']))],
+                     [i for i in range(len(data['stations']))]))
     print(names)
 
     n = len(names)
@@ -39,10 +40,18 @@ def solve_text_case(start):
     np.save("spins.npy", spins)
 
     out = list()
+    vertexes = []
     for i in range(QUBO_obj.get_path_size()):
-        stant = QUBO_obj.print_option(spins[i*QUBO_obj.get_row_size():(i+1)*QUBO_obj.get_row_size()])
+        stant = QUBO_obj.print_option(spins[i * QUBO_obj.get_row_size():(i + 1) * QUBO_obj.get_row_size()])
         if stant != 'f':
+            vertexes.append(stant)
             out.append(data['stations'][stant]['name'])
         else:
+            vertexes.append(names[start])
             out.append(start)
+    final_time = 0
+
+    for i in range(len(vertexes) - 1):
+        final_time += G.edges[vertexes[i]][vertexes[i + 1]]
+    print(final_time, "время на путь")
     return out
