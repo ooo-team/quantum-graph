@@ -13,7 +13,7 @@ def create_solver_connection():
     return s
 
 
-def solve_text_case(start, s, end=-1):
+def solve_text_case(s,start, end=-1):
     if end == -1:
         end = start
     with open("../test_stations.json", 'r', encoding='utf-8') as file:
