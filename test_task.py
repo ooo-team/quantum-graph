@@ -1,19 +1,9 @@
-from qboard import Solver
 import numpy as np
 from QUBO import *
 import json
 
 
-def create_solver_connection():
-    PARAMS = {
-        "remote_addr": "https://remote.qboard.tech",
-        "access_key": "8a9c6702-ee8c-4cdc-a857-801f06cbd886"
-    }
-    s = Solver(mode="remote:simcim", params=PARAMS)
-    return s
-
-
-def solve_text_case(s,start, end=-1):
+def solve_text_case(s, start, end=-1):
     if end == -1:
         end = start
     with open("../test_stations.json", 'r', encoding='utf-8') as file:
