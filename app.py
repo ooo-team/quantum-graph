@@ -7,6 +7,8 @@ app = Flask(__name__)
 with open('test_stations.json', 'r', encoding='utf-8') as metro_graph:
     stations = json.load(metro_graph)['stations']
 
+appropriate_stations = [i["name"] for i in stations]
+
 slver = test_task.create_solver_connection()
 
 
@@ -18,9 +20,8 @@ def maps():
 @app.route('/', methods=['POST'])
 def maps_post():
     text = request.form['station']
-    appropriate_stations = [i["name"] for i in stations]
     if text not in appropriate_stations:
-        return render_template("mapbasics.html", data=stations), 400
+        return render_template("mapbasics.html", data=stations, msg="Некорректный выбор!"), 400
     processed = test_task.solve_text_case(text, slver)
     total_time = sum(processed[1])
     processed[1].append(None)

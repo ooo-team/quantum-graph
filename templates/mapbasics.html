@@ -28,6 +28,7 @@
     </style>
     {#
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU" type="text/javascript"></script>#}
+
 </head>
 
 <body class="color-4">
@@ -60,7 +61,12 @@
         </li>
         {% endfor %}
     </ol>
-    <h3 style="text-align: center;">Суммарное время поездки: <span style="color:#dcd38e">{{total_time}} мин.</span></h3>
+
+    <h3 style="text-align: center;">Суммарное время поездки: <span style="color:#dcd38e">{{total_time}}
+            мин.</span></h3>
+    <h3 id="msg_header" ; style="text-align: center;">{{ msg }}</h3>
+
+
     <div style="height:120px; width:100%; clear:both;"></div>
     <div id="map"></div>
 
