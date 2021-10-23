@@ -26,10 +26,24 @@ def autocomplete_post():
     return render_template('input_dropdown.html', data=stations, processed_text_time=processed_text_time, total_time=total_time), 201
 
 
+
+@app.route('/map')
+def maps():
+    return render_template("mapbasics.html", data=stations)
+
+
+@app.route('/map', methods=['POST'])
+def maps_post():
+    text = request.form['station']
+    processed = test_task.solve_text_case(text, slver)
+    total_time = sum(processed[1])
+    processed[1].append(None)
+    processed_text_time = list(zip(processed[0], processed[1]))
+    # print(list(processed_text_time))
+    return render_template('mapbasics.html', data=stations, processed_text_time=processed_text_time, total_time=total_time), 201
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
 
-@app.route('/map')
-def maps():
-    return render_template('mapbasics.html')
