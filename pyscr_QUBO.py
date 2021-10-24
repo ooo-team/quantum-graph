@@ -102,6 +102,9 @@ class QUBOMatrixFromGraphComm:  # QUBO генератор для графа (г�
             return "f"
 
     def format_x_to_ret(self, spins, data, names, start, graph):
+        invert_names = dict()
+        for name in names:
+            invert_names[names[name]] = name
         # формируем вывод, нужны названия станций подряд и время между ними
 
         out = []  # названия
@@ -113,7 +116,7 @@ class QUBOMatrixFromGraphComm:  # QUBO генератор для графа (г�
             batch = self.print_option(spins[i * self.get_row_size():(i + 1) * self.get_row_size()])
             if batch != 'f':  # Кидаем имя станции и индекс в листы
                 vertexes.append(batch)
-                out.append(data['stations'][batch]['name'])
+                out.append(invert_names[batch])
             else:
                 vertexes.append(names[start])
                 out.append(start)
