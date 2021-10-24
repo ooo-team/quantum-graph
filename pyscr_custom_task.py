@@ -39,5 +39,10 @@ def solve_case(s, start, end=-1, points=[]):  # финалка, внутриен
     Q = QUBO_obj.get_matrix()  # достаём его из генератора
 
     spins, energy = s.solve_qubo(Q, timeout=1)  # пускаем на солвера Q, спины это наш Х, енергия может пригодиться
-
-    return QUBO_obj.format_x_to_ret(spins, data, names, start, G)  # форматируем X по размеру QUBO_obj
+    ways = QUBO_obj.format_x_to_ret(spins, data, names, start, G)
+    import csv
+    file = open('test_logs/answer.csv', 'w+', newline='')
+    with file:
+        write = csv.writer(file)
+        write.writerows([ways[0]])
+    return ways  # форматируем X по размеру QUBO_obj
