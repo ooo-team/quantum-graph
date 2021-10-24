@@ -60,4 +60,11 @@ def solve_text_case(start, s):
         times.append(G.edges[vertexes[i]][vertexes[i + 1]])
         final_time += G.edges[vertexes[i]][vertexes[i + 1]]
     print(final_time, "время на путь")
+
+    import csv
+    file = open('answer.csv', 'w+', newline='')
+    with file:
+        write = csv.writer(file)
+        write.writerows([out])
+
     return out, times
