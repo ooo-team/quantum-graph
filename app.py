@@ -31,7 +31,7 @@ def maps_post():
         chosen_stations_unique = list(set(chosen_stations))
         chosen_stations.clear()
         processed = pyscr_custom_task.solve_case(slver, start, finish, chosen_stations_unique)
-
+        chosen_stations_unique.clear()
         total_time = sum(processed[1])
         processed[1].append(None)
         processed_text_time = list(zip(processed[0], processed[1]))
