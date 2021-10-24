@@ -45,10 +45,7 @@ def maps_post():
         chosen_stations.append(request.form['station'])
         return render_template("mapbasics.html", data=stations, msg="UwU Введите ещё..... Вы ввели "+ str(chosen_stations))
 
-        
-
 
 if __name__ == '__main__':
     app.run(debug=True)
-
 
